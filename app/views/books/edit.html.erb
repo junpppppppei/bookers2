@@ -1,5 +1,5 @@
 <div>
- <h1>New book</h1>
+ <h1>Editing Book</h1>
  <%= form_with model:@book,local:true do |f| %>
 
   <label>Title</label>
@@ -13,4 +13,4 @@
 
 <%= link_to "Show",book_path(@book) %>
 |
-<span>Back</span>
+<%= link_to "Back",books_path %>
