@@ -1,52 +1,51 @@
-<h1>User info</h1>
-<table>
- <tr>
-  <%= attachment_image_tag @user,:profile_image,:fill,100,100,format:'jpeg',fallback: "no_image.jpg" %>
- </tr>
+<div class="container px-5 px-sm-o">
+ <div class="row">
+  <div class="col-md-3">
+   <h1>User info</h1>
+   <table class="table">
+     <tr>
+      <%= attachment_image_tag @user,:profile_image,:fill,100,100,format:'jpeg',fallback: "no_image.jpg" %>
+     </tr>
+     <tr>
+      <th>name</th>
+      <td><%= @user.name %></td>
+     <tr>
+     <tr>
+      <th>introduction</th>
+      <td><%= @user.introduction %></td>
+     <tr>
+   </table>
+   <div class="row">
+    <% if @user.id == current_user.id %>
+     <%= link_to edit_user_path(@user) do %>
+      <a class="btn btn-light btn-block fas fa-user-cog"></a>
+     <% end %>
+    <% end %>
 
- <tr>
-  <th>name</th>
-  <td><%= @user.name %></td>
- <tr>
-
- <tr>
-  <th>introduction</th>
-  <td><%= @user.introduction %></td>
- <tr>
-
-</table>
-
-<% if @user.id == current_user.id %>
- <p><%= link_to "プロフィール編集",edit_user_path(@user) %></p>
-<% end %>
-
-<div>
- <h1>New book</h1>
- <%= form_with model:@book,local:true do |f| %>
-
-  <label>Title</label>
-  <div><%= f.text_field :title %></div>
-
-  <label>Opinion</label>
-  <div><%= f.text_area :body %></div>
-  <%= f.submit'Create Book' %>
- <% end %>
-</div>
-
-
-<h1>Books</h1>
-<table>
- <thead>
-  <tr>
-   <th> </th>
-   <th>Title</th>
-   <th>Opinion</th>
-  </tr>
- </thead>
-
- <% @books.each do |book|%>
-  <tbody>
-   <tr>
+   <div>
+    <h1>New book</h1>
+    <%= form_with model:@book,local:true do |f| %>
+     <label>Title</label>
+     <div><%= f.text_field :title %></div>
+     <label>Opinion</label>
+     <div><%= f.text_area :body %></div>
+     <%= f.submit'Create Book' %>
+    <% end %>
+   </div>
+  </div>
+  <div class="col-md-8 offset-md-1">
+   <h1>Books</h1>
+   <table class ="table">
+   <thead>
+    <tr>
+     <th> </th>
+     <th>Title</th>
+     <th>Opinion</th>
+    </tr>
+   </thead>
+   <% @books.each do |book|%>
+   <tbody>
+    <tr>
      <td>
       <%= attachment_image_tag book.user,:profile_image, :fill,60,60,format: 'jpeg',fallback: "no_image.jpg" %>
      </td>
@@ -56,7 +55,10 @@
       <% end %>
      </td>
      <td><%= book.body %></td>
-   </tr>
-  </tbody>
- <% end %>
-</table>
+    </tr>
+   </tbody>
+   <% end %>
+  </table>
+  </div>
+ </div>
+</div>
